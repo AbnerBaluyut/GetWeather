@@ -1,18 +1,18 @@
 
-import 'weather_condition_enum.dart';
+import '../enums/weather_condition.dart';
 
 extension IntExt on int {
-  WeatherConditionEnum get toCondition {
+  WeatherCondition get toCondition {
     switch (this) {
       case 0:
-        return WeatherConditionEnum.clear;
+        return WeatherCondition.clear;
       case 1:
       case 2:
       case 3:
-        return WeatherConditionEnum.cloudy;
+        return WeatherCondition.cloudy;
       case 45:
       case 48:
-        return WeatherConditionEnum.foggy;
+        return WeatherCondition.foggy;
       case 51:
       case 53:
       case 55:
@@ -26,20 +26,20 @@ extension IntExt on int {
       case 80:
       case 81:
       case 82:
-        return WeatherConditionEnum.rainy;
+        return WeatherCondition.rainy;
       case 71:
       case 73:
       case 75:
       case 77:
       case 85:
       case 86:
-        return WeatherConditionEnum.snowy;
+        return WeatherCondition.snowy;
       case 95:
       case 96:
       case 99:
-        return WeatherConditionEnum.thunderstorm;
+        return WeatherCondition.thunderstorm;
       default:
-        return WeatherConditionEnum.unknown;
+        return WeatherCondition.unknown;
     }
   }
 

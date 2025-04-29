@@ -27,6 +27,10 @@ dependencies:
   freezed_annotation: ^3.0.0
   json_annotation: ^4.9.0
 
+  # Location
+  geolocator: ^14.0.0
+  permission_handler: ^12.0.0+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

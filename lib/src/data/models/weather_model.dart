@@ -1,6 +1,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:get_weather/src/common/int_ext.dart';
+import 'package:get_weather/src/common/extentions/int_ext.dart';
 
 import '../../domain/entities/weather_entity.dart';
 

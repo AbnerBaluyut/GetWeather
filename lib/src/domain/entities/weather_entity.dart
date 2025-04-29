@@ -1,11 +1,11 @@
 
 
-import '../../common/weather_condition_enum.dart';
+import '../../common/enums/weather_condition.dart';
 
 class WeatherEntity {
 
   final double temperature;
-  final WeatherConditionEnum condition;
+  final WeatherCondition condition;
   final String label;
 
   WeatherEntity({

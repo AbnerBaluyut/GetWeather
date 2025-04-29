@@ -1,4 +1,4 @@
-enum WeatherConditionEnum {
+enum WeatherCondition {
   clear,
   rainy,
   cloudy,

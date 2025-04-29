@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 
 import '../api_client/weather_api_client.dart';
 import '../api_client/weather_api_client_impl.dart';
+import '../common/location_manager.dart';
 import '../data/remote_source/weather_remote_source.dart';
 import '../data/remote_source/weather_remote_source_impl.dart';
 import '../data/repository/weather_repository.dart';
@@ -12,6 +13,10 @@ import '../domain/usecase/weather_usecase_impl.dart';
 final injector = GetIt.I;
 
 Future<void> setupDI() async {
+
+  injector.registerSingleton<LocationManager>(
+    LocationManager()
+  );
   
   injector.registerLazySingleton<WeatherApiClient>(
     () => WeatherApiClientImpl()
