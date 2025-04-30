@@ -2,7 +2,7 @@ part of '/src/weather_service.dart';
 
 final _injector = GetIt.I;
 
-Future<void> setupDI() async {
+Future<void> _setupDI() async {
 
   GetIt.I.registerSingleton<LocationManager>(
     LocationManager()

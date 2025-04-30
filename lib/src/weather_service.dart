@@ -24,7 +24,7 @@ class WeatherService {
   WeatherService._internal();
 
   // Initialize dependecies
-  static Future<void> initialize() async => setupDI();
+  static Future<void> initialize() async => _setupDI();
 
   // Injected dependencies
   WeatherUseCase get _weatherUseCase => _injector();
