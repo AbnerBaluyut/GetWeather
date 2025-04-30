@@ -38,4 +38,6 @@ class WeatherService {
     required double latitude, 
     required double longitude
   }) => _weatherUseCase.execute(latitude: latitude, longitude: longitude);
+
+  void cancel() => _weatherUseCase.cancel();
 }
