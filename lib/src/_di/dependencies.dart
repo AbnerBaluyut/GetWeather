@@ -1,36 +1,26 @@
-import 'package:get_it/get_it.dart';
+part of '/src/weather_service.dart';
 
-import '../api_client/weather_api_client.dart';
-import '../api_client/weather_api_client_impl.dart';
-import '../common/location_manager.dart';
-import '../data/remote_source/weather_remote_source.dart';
-import '../data/remote_source/weather_remote_source_impl.dart';
-import '../data/repository/weather_repository.dart';
-import '../data/repository/weather_repository_impl.dart';
-import '../domain/usecase/weather_usecase.dart';
-import '../domain/usecase/weather_usecase_impl.dart';
-
-final injector = GetIt.I;
+final _injector = GetIt.I;
 
 Future<void> setupDI() async {
 
-  injector.registerSingleton<LocationManager>(
+  GetIt.I.registerSingleton<LocationManager>(
     LocationManager()
   );
   
-  injector.registerLazySingleton<WeatherApiClient>(
+  _injector.registerLazySingleton<WeatherApiClient>(
     () => WeatherApiClientImpl()
   );
 
-  injector.registerLazySingleton<WeatherRemoteSource>(
-    () => WeatherRemoteSourceImpl(client: injector())
+  _injector.registerLazySingleton<WeatherRemoteSource>(
+    () => WeatherRemoteSourceImpl(client: _injector())
   );
 
-  injector.registerLazySingleton<WeatherRepository>(
-    () => WeatherRepositoryImpl(remoteSource: injector())
+  _injector.registerLazySingleton<WeatherRepository>(
+    () => WeatherRepositoryImpl(remoteSource: _injector())
   );
 
-  injector.registerLazySingleton<WeatherUseCase>(
-    () => WeatherUseCaseImpl(repository: injector())
+  _injector.registerLazySingleton<WeatherUseCase>(
+    () => WeatherUseCaseImpl(repository: _injector())
   );
 }

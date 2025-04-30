@@ -1,39 +1,93 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Weather App
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-<!-- 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This Flutter app allows users to fetch weather information based on their location or by providing latitude and longitude coordinates.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- **Weather Service**: Fetch weather data using a weather API.
+- **Location Service**: Get the user's current location using GPS.
+- **Dependency Injection**: Setup dependencies with `WeatherService` class.
 
-## Getting started
+## Setup & Initialization
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Before using the `WeatherService` class, you must initialize it to set up the required dependencies.
 
-## Usage
+### 1. Initialize `WeatherService`
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+In your `main.dart`, call `WeatherService.initialize()` to set up the dependency injection (DI) and make sure all services are ready to use before the app starts.
+
+#### Example: `main.dart`
 
 ```dart
-const like = 'sample';
-```
+import 'package:flutter/material.dart';
+import 'weather_service.dart'; // Import your WeatherService class
 
-## Additional information
+void main() async {
+  // Ensure Flutter is initialized before setting up WeatherService
+  WidgetsFlutterBinding.ensureInitialized();
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more. -->
+  // Initialize WeatherService (sets up DI and dependencies)
+  await WeatherService.initialize();
+
+  // Run the app
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Weather App',
+      home: WeatherScreen(),
+    );
+  }
+}
+
+class WeatherScreen extends StatefulWidget {
+  @override
+  _WeatherScreenState createState() => _WeatherScreenState();
+}
+
+class _WeatherScreenState extends State<WeatherScreen> {
+  String _weatherInfo = 'Fetching weather...';
+
+  @override
+  void initState() {
+    super.initState();
+    _getWeather();
+  }
+
+  // Function to fetch weather based on latitude and longitude
+  Future<void> _getWeather() async {
+    // Example coordinates (latitude, longitude)
+    double latitude = 37.7749;
+    double longitude = -122.4194;
+
+    // Fetch weather data using WeatherService
+    final result = await WeatherService().getWeather(latitude: latitude, longitude: longitude);
+    result.fold(
+      (error) {
+        setState(() {
+          _weatherInfo = 'Error: $error';
+        });
+      },
+      (weatherEntity) {
+        setState(() {
+          _weatherInfo = 'Weather: ${weatherEntity.description}';
+        });
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Weather App'),
+      ),
+      body: Center(
+        child: Text(_weatherInfo),
+      ),
+    );
+  }
+}
