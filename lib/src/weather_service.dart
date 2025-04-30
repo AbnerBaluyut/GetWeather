@@ -30,11 +30,12 @@ class WeatherService {
   WeatherUseCase get _weatherUseCase => _injector();
   LocationManager get _locationManager => _injector();
 
-
   // Function to get current location
   Future<LocationResult> getCurrentLocation() => _locationManager.getCurrentLocation();
 
-
   // Function to get current weather based on latitude and longitude
-  TaskEither<String, WeatherEntity> getWeather({required double latitude, required double longitude}) => _weatherUseCase.execute(latitude: latitude, longitude: longitude);
+  TaskEither<String, WeatherEntity> getWeather({
+    required double latitude, 
+    required double longitude
+  }) => _weatherUseCase.execute(latitude: latitude, longitude: longitude);
 }

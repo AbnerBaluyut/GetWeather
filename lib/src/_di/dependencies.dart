@@ -4,7 +4,7 @@ final _injector = GetIt.I;
 
 Future<void> _setupDI() async {
 
-  GetIt.I.registerSingleton<LocationManager>(
+  _injector.registerSingleton<LocationManager>(
     LocationManager()
   );
   

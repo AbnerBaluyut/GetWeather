@@ -31,5 +31,8 @@ class WeatherRemoteSourceImpl implements WeatherRemoteSource {
       }
       return "An error occurred. Please try again.";
     });
-  } 
+  }
+  
+  @override
+  void cancel() => client.cancelRequest();
 }

@@ -19,4 +19,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
     final result = remoteSource.getWeather(params.toJson());
     return result.map((model) => model.toEntity());
   }
+  
+  @override
+  void cancel() => remoteSource.cancel();
 }

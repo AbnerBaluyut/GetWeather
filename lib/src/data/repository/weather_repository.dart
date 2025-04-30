@@ -5,4 +5,5 @@ import '../../domain/payload/weather_param.dart';
 abstract class WeatherRepository {
 
   TaskEither<String, WeatherEntity> getWeather({required WeatherParams params});
+  void cancel();
 }

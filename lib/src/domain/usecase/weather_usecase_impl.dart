@@ -22,4 +22,7 @@ class WeatherUseCaseImpl implements WeatherUseCase {
     );
     return repository.getWeather(params: params);
   }
+  
+  @override
+  void cancel() => repository.cancel();
 }
