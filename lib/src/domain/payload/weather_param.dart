@@ -11,7 +11,7 @@ class WeatherParams {
   });
 
   
-  toJson() => {
+  Map<String, dynamic> toJson() => {
     'latitude': '$latitude',
     'longitude': '$longitude',
     'current_weather': isCurrentWeather,
